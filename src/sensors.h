@@ -5,6 +5,9 @@
 #include <DFRobot_PH.h>
 #include <DHTesp.h>
 #include <OneWire.h>
+#ifdef HAVE_AHT20
+#include <DFRobot_AHT20.h>
+#endif
 
 #include "config.h"
 
@@ -34,8 +37,10 @@ public:
   void sen0217Interrupt();                                // should be called from the interrupt handler passed in the constructor
 
 private:
-#ifdef HAVE_TEMP_HUMIDITY
+#ifdef HAVE_DHT22
   DHTesp dht; // Temperature and Humidity
+#elif HAVE_AHT20
+  DFRobot_AHT20 aht20; // Temperature and Humidity
 #endif
 
 #ifdef HAVE_TEMP_WET

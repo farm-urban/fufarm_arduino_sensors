@@ -19,17 +19,17 @@ You can comment/uncomment, one of the lines under `platformio` in the configurat
 
 There are a number of sensors used in the farm for different purposes.
 
-| Sensor   | Purpose                        | Pin  | Flag                 | Macro         |
-| -------- | ------------------------------ | ---- | -------------------- | ------------- |
-| Light    |                                | A0   | SENSORS_LIGHT_PIN    | HAVE_LIGHT    |
-| C02      |                                | A1   | SENSORS_CO2_PIN      | HAVE_CO2      |
-| EC       |                                | A2   | SENSORS_EC_PIN       | HAVE_EC       |
-| pH       |                                | A3   | SENSORS_PH_PIN       | HAVE_PH       |
-| Moisture |                                | A4   | SENSORS_MOISTURE_PIN | HAVE_MOISTURE |
-| AHT20    | Humidity and Temperature (Air) | UART | HAVE_AHT20           | HAVE_AHT20    |
-| DHT22    | Humidity and Temperature (Air) | 2    | SENSORS_DHT22_PIN    | HAVE_DHT22    |
-| SEN0217  | Flow Sensor                    | 3    | SENSORS_SEN0217_PIN  | HAVE_FLOW     |
-| DS18S20  | Temperature (Wet)              | 4    | SENSORS_DS18S20_PIN  | HAVE_TEMP_WET |
+| Sensor   | Purpose                        | Pin | Flag                 | Macro         |
+| -------- | ------------------------------ | --- | -------------------- | ------------- |
+| Light    |                                | A0  | SENSORS_LIGHT_PIN    | HAVE_LIGHT    |
+| C02      |                                | A1  | SENSORS_CO2_PIN      | HAVE_CO2      |
+| EC       |                                | A2  | SENSORS_EC_PIN       | HAVE_EC       |
+| pH       |                                | A3  | SENSORS_PH_PIN       | HAVE_PH       |
+| Moisture |                                | A4  | SENSORS_MOISTURE_PIN | HAVE_MOISTURE |
+| AHT20    | Humidity and Temperature (Air) | I2C | HAVE_AHT20           | HAVE_AHT20    |
+| DHT22    | Humidity and Temperature (Air) | 2   | SENSORS_DHT22_PIN    | HAVE_DHT22    |
+| SEN0217  | Flow Sensor                    | 3   | SENSORS_SEN0217_PIN  | HAVE_FLOW     |
+| DS18S20  | Temperature (Wet)              | 4   | SENSORS_DS18S20_PIN  | HAVE_TEMP_WET |
 
 When you start using this, you might not have/need all of these. You can remove the ones you do not have/need by editing `build_flags` in [platformio.ini](./platformio.ini). For example, if you do not have pH sensor, you can remove the line containing `-DSENSORS_PH_PIN=A3`. By default, when a sensor is not enabled, the value is `-1` to signify invalid.
 

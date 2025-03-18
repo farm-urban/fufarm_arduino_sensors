@@ -1,6 +1,7 @@
 #ifndef SENSORS_H
 #define SENSORS_H
 
+#include "config.h"
 #include <DFRobot_EC.h>
 #include <DFRobot_PH.h>
 #include <DHTesp.h>

@@ -236,7 +236,7 @@ void haRegisterSensors() {
 #ifdef HAVE_LIGHT
   haAnnounceSensor(String("illuminance"), String("illuminance"), false, payload, buffer);
 #endif
-#ifdef HAVE_DHT22
+#if defined(HAVE_DHT22) || defined(HAVE_AHT20)
   haAnnounceSensor(String("temperature"), String("temperature"), false, payload, buffer);
   haAnnounceSensor(String("humidity"), String("humidity"), false, payload, buffer);
 #endif

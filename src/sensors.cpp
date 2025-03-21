@@ -16,7 +16,11 @@
 
 #define KVALUEADDR 0x00
 
+#ifdef HAVE_ENS160
 FuFarmSensors::FuFarmSensors(void (*sen0217InterruptHandler)()) : ens160(&Wire, /* I2C Address */ 0x53)
+#else
+FuFarmSensors::FuFarmSensors(void (*sen0217InterruptHandler)())
+#endif
 {
 }
 
@@ -72,6 +76,7 @@ void FuFarmSensors::begin()
   pulseCount = 0;
   if (sen0217InterruptHandler != nullptr)
   {
+    Serial.println(F("Flow sensor enabled"));
     attachInterrupt(digitalPinToInterrupt(SENSORS_SEN0217_PIN), sen0217InterruptHandler, RISING);
   }
 #endif

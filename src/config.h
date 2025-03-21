@@ -3,11 +3,9 @@
 
 // #define MOCK ; // Uncomment to skip wifi connection for testing sensors
 
-#ifdef MOCK
-#define SAMPLE_WINDOW 5000
-#else
-// Time in milliseconds - 5 minutes = 1000 * 60 * 5 = 300000
-#define SAMPLE_WINDOW 60000
+#ifndef SAMPLE_WINDOW
+// Time in milliseconds - 1 minute = 1000 * 60 * 5 = 300000
+#define SAMPLE_WINDOW 300000
 #endif
 
 #ifdef SENSORS_LIGHT_PIN
@@ -49,13 +47,13 @@
     #else
       #error "Pin configured for SEN0217 (flow sensor) must support interrupts on LEONARDO."
     #endif
-  #elif defined(ARDUINO_UNOR4_WIFI) // all digital pins
+  #elif defined(ARDUINO_AVR_UNO_WIFI_REV2) // all digital pins
     #if SENSORS_SEN0217_PIN < 0 || SENSORS_SEN0217_PIN > 13
       #error "Pin configured for SEN0217 (flow sensor) must support interrupts on UNO WIFI REV2."
     #endif
-  #elif defined(ARDUINO_AVR_UNO_WIFI_REV2) // only 2 or 3
+  #elif defined(ARDUINO_UNOR4_WIFI) // only 2 or 3
     #if SENSORS_SEN0217_PIN != 2 && SENSORS_SEN0217_PIN != 3
-      #error "Pin configured for SEN0217 (flow sensor) must support interrupts on UNO R4 WIFI."
+      #error "Pin configured for SEN0217 (flow sensor) must support interrupts on UNO WIFI REV2UNO R4 WIFI."
     #endif
   #else // any other board we have not validated
     #pragma message "⚠️ Unable to validate if pin configured for SEN0217 (flow sensor) allows interrupts required."

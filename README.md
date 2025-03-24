@@ -95,12 +95,25 @@ The code base supports either sending data to Home Assistant (MQTT) or printing 
 
 ## Testing MQTT without a Home Assistant setup
 
-Sometimes, you may not have direct access to a Home Assistant setup and you want to test the MQTT communication, you can setup a local broker using mosquitto.
+Sometimes, you may not have direct access to a Home Assistant setup and you want to test the MQTT communication, you can setup a local broker using [mosquitto](https://mosquitto.org/documentation/) and the test the status of the broker with [MQTT Explorer](https://mqtt-explorer.com/).
 
-<details>
-<summary>Example:</summary>
+### Docker
 
-Install it using `brew install mosquitto` then you can run it using `mosquitto -v -c mosquitto.conf`. More instructions can be found on the [official docs website](https://mosquitto.org/documentation/).
+1. Install [docker](https://docs.docker.com/engine/install/). If on OSX, make sure the root code directory is shared from the host: **Docker -> Preferences... -> Resources -> File Sharing**
+
+2. Start the broker with:
+
+   `docker run -it -p 1883:1883 -v "$PWD/mosquitto.conf:/mosquitto/config/mosquitto.conf" eclipse-mosquitto`
+
+### Local install
+
+1. Install mosquitto:
+
+   `brew install mosquitto`
+
+2. Run using:
+
+   `mosquitto -v -c mosquitto.conf`
 
 If your machine is connected to a different network it does not allow incoming traffic for security reasons, you can tunnel the connection via [ngrok](https://ngrok.com). In another terminal window/tab install using `brew install ngrok`, setup auth using instructions on your account e.g. `ngrok config add-authtoken <some-token>` then run `ngrok tcp 1883`. You will then see an output such as:
 
@@ -133,8 +146,6 @@ Once you upload, the code and the connection happens, in the mosquitto window yo
 1742675849: Received DISCONNECT from ard1
 1742675849: Client ard1 disconnected.
 ```
-
-</details>
 
 ## Spelling
 

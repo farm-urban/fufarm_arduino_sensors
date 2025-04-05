@@ -58,6 +58,7 @@ There are a number of sensors used in the farm for different purposes.
 | SEN0217  | Flow Sensor                    | 3   | SENSORS_SEN0217_PIN  | HAVE_FLOW              |
 | DS18S20  | Temperature (Wet)              | 4   | SENSORS_DS18S20_PIN  | HAVE_TEMP_WET          |
 | SEN0204  | Water Level Sensor             | 5   | SENSORS_SEN0204_PIN  | HAVE_WATER_LEVEL_STATE |
+| DRF0523  | Digital Peristaltic Pump       | 9   | PUMP_EC_DOSING_PIN   | HAVE_EC_DOSING         |
 | AHT20    | Humidity and Temperature (Air) | I2C | HAVE_AHT20           | HAVE_AHT20             |
 | ENS160   | Air Quality & Multi Gas        | I2C | HAVE_ENS160          | HAVE_ENS160            |
 
@@ -93,3 +94,7 @@ For simplicity doing calibration and to allow you recalibrate on the fly, you ca
 ## Data Transmission
 
 The code base supports either sending data to Home Assistant (MQTT) or printing out JSON via Serial. Data is sent to HomeAssistant, if the board has network support (e.g. WiFi). HomeAssistant is capable enough to replay the information to any other destination including InfluxDB (which we used to support in this repository).
+
+## Auto dosing
+
+This repository's code supports auto dosing with control from the Home Assistant dashboard. By default (and on every reboot), it is disabled, the target EC is 1.8 mS/cm, a 5-second dosing duration, and a 3-second equilibrium time. After the first dosing, you are able to see other information such as the last time it happened, number of times and so on.

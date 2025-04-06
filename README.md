@@ -150,7 +150,7 @@ sudo systemctl start fusensors
 
 ```
 
-7. Create the mqtt.yml file in Home Assitant to expose the sensors from the arduino, e.g:
+7. Create the `mqtt.yml` file in Home Assistant to expose the sensors from the Arduino, e.g:
 
 ```
 - sensor:

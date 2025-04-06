@@ -150,78 +150,8 @@ sudo systemctl start fusensors
 
 ```
 
-7. Create the `mqtt.yml` file in Home Assistant to expose the sensors from the Arduino, e.g:
+7. Create an `mqtt.yml` file in Home Assistant to expose the sensors from the Arduino. An example file is included in the root of this repository. This can be added to the Home Assistant `configuration.yaml` file as shown below:
 
 ```
-- sensor:
-    unique_id: farm_temp
-    name: "Farm Temp"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "temperature"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'tempair') }}
-
-- sensor:
-    unique_id: farm_humidity
-    name: "Farm Humidity"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "humidity"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'humidity') }}
-
-- sensor:
-    unique_id: farm_light
-    name: "Farm Light"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "illuminance"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'light') }}
-
-- sensor:
-    unique_id: farm_co2
-    name: "Farm CO2"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "carbon_dioxide"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'co2') }}
-
-- sensor:
-    unique_id: farm_flow
-    name: "Sump flow rate"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "volume_flow_rate"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'flow') }}
-
-
-- sensor:
-    unique_id: sump_level
-    name: "Sump Level Sensor"
-    state_topic: "sensors/stream/rpiarduino"
-    device_class: "moisture"
-    expire_after: 120
-    value_template: >-
-      {% from 'mqtt_parser.jinja' import parse_stream %}
-      {{ parse_stream(value,'water_level') }}
-```
-
-This requires the following jinja template in `home-assistant/config/custom_templates/mqtt_parser.jinja`:
-
-```
-{% macro parse_stream(value, sensor) %}
-{% set parsed_json = value | from_json %}
-{% if sensor in parsed_json %}
-    {{ float(parsed_json[sensor]) }}
-{% endif %}
-{% endmacro %}
+mqtt: !include mqtt.yml
 ```

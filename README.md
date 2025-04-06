@@ -100,7 +100,7 @@ If using the Gravity [DFR0327 Arduino Shield for Raspberry Pi](https://www.dfrob
 
 There are several steps to get this working:
 
-1. Checkout this repoistory (into `/opt` in this example), cd into the directory created and edit `platform.ini` to specify the sensors in use.
+1. Checkout this repository (into `/opt` in this example), cd into the directory created and edit `platform.ini` to specify the sensors in use.
 2. Install platformio with:
 
 ```

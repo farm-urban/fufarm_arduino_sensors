@@ -20,7 +20,9 @@ __attribute__((noreturn)) void reboot()
   NVIC_SystemReset();
 #else
   // For AVR boards like the Uno WiFi Rev2: enable watchdog with a short timeout
-  wdt_enable(WDTO_15MS);
+  CPU_CCP = 0xD8;
+  WDT.CTRLA = 0x4;
+  wdt_enable(WDTO_2S);
   while (true)
   {
     // Wait for the watchdog to reset the board

@@ -76,7 +76,7 @@ jobs:
           cp ${{ github.workspace }}/.pio/build/esp32s3_devkitc/firmware.bin ${{ github.workspace }}/firmware/esp32s3_devkitc.bin
 
       - name: Upload Artifact (firmware)
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: ${{ github.workspace }}/firmware/*
           name: firmware
